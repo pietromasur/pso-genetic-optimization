@@ -1,7 +1,6 @@
 import math
 from typing import List
 #Based on function described at https://www.sfu.ca/~ssurjano/levy.html
-#Domain x in [-10, 10]
 def levy(values: List):
     """This function calculates the Rastrigin function's value for the given N-dimensional array."""
     # Initialize the function's value
@@ -15,3 +14,7 @@ def levy(values: List):
             w = 1 + (values[i]-1)/4
             return_value+=((w-1)**2)*(1+10*math.sin(math.pi*w+1)**2)
     return return_value
+
+#Domain x in [-10, 10]
+def get_levy_domain():
+    return [-10,10]

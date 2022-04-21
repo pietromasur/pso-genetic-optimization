@@ -2,7 +2,6 @@ from typing import List
 import math
 
 #Based on function described at https://www.sfu.ca/~ssurjano/ackley.html
-#Domain x in [-32.768, 32.768]
 def ackley(values: List):
     """This function calculates the Ackley function's value for the given N-dimensional array."""
     # Initialize the function's value and constants
@@ -18,3 +17,7 @@ def ackley(values: List):
         c_exp_value += math.cos(c*values[i])
     return_value = -a*(math.exp(-b*math.sqrt(b_exp_value/len(values)))) - math.exp(c_exp_value/len(values)) + a + math.exp(1)
     return return_value
+
+#Domain x in [-32.768, 32.768]
+def get_acley_domain():
+    return [-32.768, 32.768]
