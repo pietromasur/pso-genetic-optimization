@@ -7,7 +7,7 @@ def schwefel(values: List):
     value = 418.9829*len(values)
     # Calculate the function's value
     for x in values:
-        value-=(x*math.sin(math.sqrt(x)))
+        value-=(x*math.sin(math.sqrt(abs(x))))
     return value
 
 #Domain x in [-500,+500]
