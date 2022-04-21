@@ -39,11 +39,13 @@ class Swarm():
             particle.update_gbest(self.gbest, self.gbest_fitness)
     def train(self, epochs, criteria = 0):
         #TODO implement stopping criteria
+        gbests = []
         for i in range(epochs):
+            gbests.append(self.gbest_fitness)
             self.update_particles()
             self.update_gbest()
-            print(self.gbest_fitness)
-            
+        gbests.append(self.gbest_fitness)
+        return gbests
 
 class Particle():
 
