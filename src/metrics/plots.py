@@ -1,6 +1,7 @@
 
 import matplotlib.pyplot as plt
-def plot(experiment_name, function_names, values, normalized = True):
+def plot(experiment_alias, function_names, values, normalized = True):
+    print("K")
     if (normalized):
         values = normalize(values)
 
@@ -9,8 +10,9 @@ def plot(experiment_name, function_names, values, normalized = True):
     plt.xlabel('Epochs')
     # plt.ylabel('KS and Auroc') 
     plt.legend()
-    plt.savefig(experiment_name)
-
+    plt.savefig('experiment_results/' + experiment_alias+'.png')
+    plt.cla()
+    plt.clf()
 def normalize(values):
     for value in values:
             dmax = max(value)
