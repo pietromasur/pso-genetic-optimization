@@ -56,6 +56,9 @@ class Swarm():
             self.update_particles()
             self.update_gbest()
         gbests.append(self.gbest_fitness)
+        #Avoid uneven returns
+        while(len(gbests)<epochs):
+            gbests.append(self.gbest_fitness)
         return gbests
 
 class Particle():
