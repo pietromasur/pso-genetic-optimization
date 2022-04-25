@@ -1,22 +1,28 @@
 
+from turtle import right
 import matplotlib.pyplot as plt
+import numpy as np
+
 def plot(experiment_alias, function_names, values, normalized = True):
-    print("K")
     if (normalized):
         values = normalize(values)
-
+    #Variable for x_axis control
+    current_x = 0
     for func, value in zip(function_names, values):
-        plt.plot(range(len(value)), value, label = func)
+        x = len(value)
+        plt.plot(range(x), value, label = func)
+        if (x>current_x):
+            current_x = x
+            plt.xlim(right = current_x)
     plt.xlabel('Epochs')
     # plt.ylabel('KS and Auroc') 
     plt.legend()
     plt.savefig('experiment_results/' + experiment_alias+'.png')
     plt.cla()
     plt.clf()
+
 def normalize(values):
     for value in values:
-            dmax = max(value)
-            dmin = min(value)
-            for i, v in enumerate(value):
-                value[i] = (value[i] - dmin)/(dmax-dmin)
+        for i, v in enumerate(value):
+            value[i] = 10000/(1 + np.exp(-v))
     return values
