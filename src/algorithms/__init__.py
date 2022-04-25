@@ -1,2 +1,2 @@
-from .genetic import genetic
+from .genetic import Population, Individual, evolve
 from .pso import Swarm, Particle
