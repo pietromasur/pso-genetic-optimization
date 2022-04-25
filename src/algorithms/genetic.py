@@ -49,10 +49,7 @@ def mutate(ind):
 
 
 def select_parents(pop):
-    pop = sorted(pop.individuals, key=lambda x: x.fitness)
-    pop = pop[: int(len(pop) / 2)]
-
-    possible_parents = np.random.choice(pop, 5)
+    possible_parents = np.random.choice(pop.individuals, 5)
     possible_parents = sorted(possible_parents, key=lambda x: x.fitness)
 
     return possible_parents[0], possible_parents[1]
@@ -60,9 +57,12 @@ def select_parents(pop):
 
 def evolve(pop, epochs, p_crossover, p_mutation, debug=False, progress_bar=False):
     iter = range(epochs)
+    best_individual = None
     for epoch in iter:
-        best_individual = min(pop.individuals, key=lambda x: x.fitness)
-
+        curr_best_individual = min(pop.individuals, key=lambda x: x.fitness)
+        
+        best_individual = curr_best_individual if best_individual == None or curr_best_individual.fitness < best_individual.fitness else best_individual
+        
         p1, p2 = select_parents(pop)
 
         s1, s2 = p1, p2
@@ -80,7 +80,7 @@ def evolve(pop, epochs, p_crossover, p_mutation, debug=False, progress_bar=False
         new_pop = new_pop[: pop.size]
         pop.individuals = new_pop
 
-    return max(pop.individuals, key=lambda x: x.fitness).fitness
+    return best_individual.fitness, best_individual.location
 
 
 

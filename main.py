@@ -24,6 +24,8 @@ import random
 
 
 for function, domain in zip(function_dict.values(), domains):
-    pop = Population(1000, 30, function, domain)
-    result = evolve(pop, 1000, 0.8, 0.3, debug=False, progress_bar=True)
-    print(result)
+    pop = Population(300, 10, function, domain)
+    print(max(pop.individuals, key=lambda x: x.fitness).fitness)
+    result = evolve(pop, 1000, 0.9, 0.4, debug=False, progress_bar=True)
+    print(result[0])
+    print(result[1])
