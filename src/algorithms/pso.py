@@ -37,11 +37,22 @@ class Swarm():
         self.gbest = pbests[pbests_fitness.index(self.gbest_fitness)]
         for particle in self.particles:
             particle.update_gbest(self.gbest, self.gbest_fitness)
-    def train(self, epochs, criteria = 0):
+    def train(self, epochs, criteria = 300):
         #TODO implement stopping criteria
         gbests = []
+        #Manage over-computing
+        best = 10000000
+        counter = 0
         for i in range(epochs):
-            gbests.append(self.gbest_fitness)
+            c_best = self.gbest_fitness
+            gbests.append(c_best)
+            if (best>c_best):
+                best = c_best
+                counter = 0
+            else:
+                counter+=1
+            if (counter == criteria):
+                break
             self.update_particles()
             self.update_gbest()
         gbests.append(self.gbest_fitness)
