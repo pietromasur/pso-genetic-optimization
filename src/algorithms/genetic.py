@@ -29,11 +29,13 @@ class Population:
 
 
 def crossover(p1, p2):
-    son1 = p1.location[:4]
-    son2 = p2.location[:4]
-
-    son1 = np.append(son1, p2.location[4:])
-    son2 = np.append(son2, p1.location[4:])
+    son1 = p1.location.copy()
+    son2 = p2.location.copy()
+    
+    replacements = random.sample(range(p1.dimensions_count), p1.dimensions_count // 2)
+    
+    for i in replacements:
+        son1[i], son2[i] = p2.location[i], p1.location[i]
 
     son1 = Individual(p1.dimensions_count, p1.fitness_func, p1.domain, son1)
     son2 = Individual(p2.dimensions_count, p2.fitness_func, p2.domain, son2)
@@ -41,15 +43,16 @@ def crossover(p1, p2):
 
 
 def mutate(ind):
-    pos = random.randint(0, ind.dimensions_count - 1)
+    pos = random.sample(range(ind.dimensions_count), ind.dimensions_count // 5)
 
-    ind.location[pos] = random.uniform(ind.domain[0], ind.domain[1])
+    for i in pos:
+        ind.location[i] = random.uniform(ind.domain[0], ind.domain[1])
 
     return ind
 
 
 def select_parents(pop):
-    possible_parents = np.random.choice(pop.individuals, 5)
+    possible_parents = np.random.choice(pop.individuals, 10, replace=False)
     possible_parents = sorted(possible_parents, key=lambda x: x.fitness)
 
     return possible_parents[0], possible_parents[1]
@@ -58,14 +61,16 @@ def select_parents(pop):
 def evolve(pop, epochs, p_crossover, p_mutation, debug=False, progress_bar=False):
     iter = range(epochs)
     best_individual = None
+    best_ind_list = []
     for epoch in iter:
         curr_best_individual = min(pop.individuals, key=lambda x: x.fitness)
         
         best_individual = curr_best_individual if best_individual == None or curr_best_individual.fitness < best_individual.fitness else best_individual
-        
+        best_ind_list.append(best_individual.fitness)
+           
         p1, p2 = select_parents(pop)
 
-        s1, s2 = p1, p2
+        s1, s2 = Individual(p1.dimensions_count, p1.fitness_func, p1.domain), Individual(p2.dimensions_count, p2.fitness_func, p2.domain)
 
         if random.randint(1, 10) / 10 > p_crossover:
             s1, s2 = crossover(p1, p2)
@@ -80,7 +85,7 @@ def evolve(pop, epochs, p_crossover, p_mutation, debug=False, progress_bar=False
         new_pop = new_pop[: pop.size]
         pop.individuals = new_pop
 
-    return best_individual.fitness, best_individual.location
+    return best_ind_list
 
 
 
