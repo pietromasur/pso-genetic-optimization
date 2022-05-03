@@ -23,7 +23,7 @@ All experiments we performed are a mean of 30 executations of the algorithm.
 We have defined a grid with the following parameters for experiments on the functions to be optimized:
 - Swarm size [10,20,30]
 - Cognitive Coefficient (c1) [0.3,0.5,0.7]
-- Social Coefficient (c2) [0.3,0.5,0.7]
+- Social Coefficient (c2) [0.3,0.5,0.7]  
 The number of epochs was set after experimenting with large values and watching we're convergence would happen. We also set a stopping criteria to activate when a experiment has no improve during a thousand epochs.  
   
 The first four functions we experimented on [Ackely,Levy, Rastrigin, Rosenbrock], the algorithm converged to the same point, without variation for every combination of swarm size, cognitive and social coefficient we've explored. The following graphic shows the results on a size 10 swarm with cognitive and social coefficient set to 0.5:  
