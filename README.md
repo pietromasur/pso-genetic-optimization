@@ -20,8 +20,6 @@ PSO is a computational method that optimizes a problem by iteratively trying to 
 # Experiments and results
 All experiments we performed are a mean of 30 executations of the algorithm.
 ## PSO  
-Sample  
-![image](https://drive.google.com/uc?export=view&id=1sZw_zILZUMmCMAzK3pehsIuFlcyTXk3P)  
 We have defined a grid with the following parameters for experiments on the functions to be optimized:
 - Swarm size [10,20,30]
 - Cognitive Coefficient (c1) [0.3,0.5,0.7]
