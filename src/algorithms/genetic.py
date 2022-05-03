@@ -43,18 +43,20 @@ def crossover(p1, p2):
 
 
 def mutate(ind):
-    pos = random.sample(range(ind.dimensions_count), ind.dimensions_count // 5)
+    pos = random.sample(range(ind.dimensions_count), int(ind.dimensions_count * 1/3))
 
+    offset = np.random.normal(0, ind.domain[1])
     for i in pos:
-        ind.location[i] = random.uniform(ind.domain[0], ind.domain[1])
+        ind.location[i] += offset
+        ind.location[i] = min(ind.domain[1], ind.location[i])
+        ind.location[i] = max(ind.domain[0], ind.location[i])
 
     return ind
 
 
 def select_parents(pop):
-    possible_parents = np.random.choice(pop.individuals, 10, replace=False)
+    possible_parents = np.random.choice(pop.individuals, 30, replace=False)
     possible_parents = sorted(possible_parents, key=lambda x: x.fitness)
-
     return possible_parents[0], possible_parents[1]
 
 

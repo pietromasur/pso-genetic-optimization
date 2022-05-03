@@ -11,6 +11,7 @@ def plot(experiment_alias, function_names, values, normalized = True):
     current_x = 0
     for func, value in zip(function_names, values):
         x = len(value)
+        plt.yscale("log")
         plt.plot(range(x), value, label = func)
         if (x>current_x):
             current_x = x
