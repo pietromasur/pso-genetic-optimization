@@ -18,3 +18,24 @@ PSO is a computational method that optimizes a problem by iteratively trying to 
 ## Genetic Algorithm
 
 # Experiments and results
+All experiments we performed are a mean of 30 executations of the algorithm.
+## PSO
+![alt text](https://drive.google.com/file/d/1sZw_zILZUMmCMAzK3pehsIuFlcyTXk3P/view?usp=sharing)  
+We have defined a grid with the following parameters for experiments on the functions to be optimized:
+- Swarm size [10,20,30]
+- Cognitive Coefficient (c1) [0.3,0.5,0.7]
+- Social Coefficient (c2) [0.3,0.5,0.7]
+The number of epochs was set after experimenting with large values and watching we're convergence would happen. We also set a stopping criteria to activate when a experiment has no improve during a thousand epochs.  
+  
+The first four functions we experimented on [Ackely,Levy, Rastrigin, Rosenbrock], the algorithm converged to the same point, without variation for every combination of swarm size, cognitive and social coefficient we've explored. The following graphic shows the results on a size 10 swarm with cognitive and social coefficient set to 0.5:  
+![alt text](https://drive.google.com/file/d/1nH5UO3Uu-9uM-Ki6CemR7I29TYCvrM3y/view?usp=sharing)  
+
+However, for the Schwefel we faced a greater problem complexity. We've tried experimenting with various values for c1 and c2 and also set the experiments running for a greater number of epochs. The constants c1 and c2 seem to have had little to no effect on the convergence value, whereas the swarm size semeed to have a greater influence on the final convergence value.
+- Swarm size 10, c1 0.5, c2 0.5
+![alt_text](https://drive.google.com/file/d/1Roj5GNFchUfGMc6qFgqbmfJXMSrC-Eel/view?usp=sharing)  
+- Swarm size 20, c1 0.5, c2 0.5
+![alt_text](https://drive.google.com/file/d/1KUiANnRRJX3mKUss0J4gJRSTbwJ1jpD-/view?usp=sharing)  
+- Swarm size 30, c1 0.5, c2 0.5
+![alt_text](https://drive.google.com/file/d/1KVRF0PkziVzUU6tvLSH2znRtPbH9oPyZ/view?usp=sharing)  
+On the following link you can find a folder containing all the experiments that were performed: https://drive.google.com/drive/folders/1rT8Mxik2OEQFYZBKnQhuK6B7rNwnbeh2?usp=sharing  
+## Genetic Algorithm  
